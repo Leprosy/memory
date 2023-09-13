@@ -1,13 +1,18 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { Header } from "./containers/Header";
+import { MainContent } from "./containers/MainContent";
+import { Footer } from "./containers/Footer";
+import { StateProvider } from "./state/StateContext";
 
 function App() {
   return (
-    <header>
-      <Header />
-      <p>Content here</p>
-    </header>
+    <StateProvider>
+      <header>
+        <Header />
+        <MainContent/>
+        <Footer />
+      </header>
+    </StateProvider>
   );
 }
 
