@@ -21,11 +21,11 @@ const getClickedItemsAreEqual = (items) => {
   return clickedItems[0].value === clickedItems[1].value;
 };
 
-const getUnclickedList = (items) => {
+const getUnclickedList = (items, preserveVisibility) => {
   return items.map(item => {
     if (item.clicked) {
       return  {
-        value: item.value, visible: false, index: item.index, clicked: false
+        value: item.value, visible: preserveVisibility, index: item.index, clicked: false
       };
     } else {
       return item;
@@ -65,11 +65,11 @@ export const Board = () => {
 
       if (getClickedItemsAreEqual(items)) {
         setScore(score + 1);
+        setItems(getUnclickedList(items, true));
       } else {
         setErrors(errors + 1);
+        setItems(getUnclickedList(items, false));
       }
-
-      setItems(getUnclickedList(items));
     }
   }, [items]);
 
