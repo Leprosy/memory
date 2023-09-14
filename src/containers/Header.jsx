@@ -26,8 +26,8 @@ export const Header = () => {
   }, []);
 
   return (
-    <div>
-      <h1 className="text-3xl font-bold text-center">Memory Game</h1>
+    <div className="m-5">
+      <h1 className="text-3xl font-bold text-center m-5">Memory Game</h1>
 
       <div className="flex flex-row justify-center">
         <div className="basis-2/4">

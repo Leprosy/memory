@@ -4,7 +4,7 @@ export const Tile = (props) => {
   const { value, visible, clicked, index, image, onPress } = props;
 
   return (
-    <div className="bg-sky-500" onClick={() => {
+    <div className="shadow-lg" onClick={() => {
       onPress(index);
     }}>
       {visible ?

@@ -74,9 +74,11 @@ export const Board = () => {
         ? (<h1 className="text-3xl font-bold underline">Loading board...</h1>)
         : <>
           <h1 className="text-3xl font-bold underline">
-            {hasWon ? "You win!" : "This is board" }
+            {hasWon ? "You win!" : "" }
           </h1>
-          {tiles}
+          <div className="grid grid-cols-4 gap-4">
+            {tiles}
+          </div>
         </>
       }
     </div>

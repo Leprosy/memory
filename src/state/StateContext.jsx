@@ -19,14 +19,14 @@ const createItems = (total) => {
 };
 
 export const StateProvider = ({ children }) => {
-  const [items, setItems] = useState(createItems(4));
+  const [items, setItems] = useState(createItems(9));
   const [score, setScore] = useState(0);
   const [errors, setErrors] = useState(0);
 
   const restart = () => {
     setErrors(0);
     setScore(0);
-    setItems(createItems(4));
+    setItems(createItems(9));
   };
 
   return (
