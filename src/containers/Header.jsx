@@ -27,13 +27,13 @@ export const Header = () => {
 
   return (
     <div className="m-5">
-      <h1 className="text-3xl font-bold text-center m-5">Memory Game</h1>
+      <h1 className="text-xl font-bold text-center m-5">Memory Game</h1>
 
-      <div className="flex flex-row justify-center">
-        <div className="basis-2/4">
+      <div className="flex flex-row">
+        <div className="basis-1/2">
           {user === "" ?
             <>
-              <input id="user" placeholder="Enter your name" className="inline-block border-b" />
+              <input id="user" placeholder="Enter your name" className="w-2/3 inline-block border-b" />
               <button className="header__button inline-block" onClick={() => setUserName()}>Ok</button>
             </>
             :
@@ -44,7 +44,7 @@ export const Header = () => {
           }
         </div>
 
-        <div className="basis-1/4">
+        <div className="basis-1/2">
           <button className="header__button" onClick={() => restart()}>Restart Game</button>
         </div>
       </div>
