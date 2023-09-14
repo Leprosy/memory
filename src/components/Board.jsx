@@ -8,6 +8,7 @@ import {
   getUnclickedList,
   checkAllVisible
 } from "../helpers";
+import { fetchData } from "../helpers/data";
 
 export const Board = () => {
   const { items, setItems, score, setScore, errors, setErrors } = useContext(StateContext);
@@ -58,14 +59,12 @@ export const Board = () => {
 
   // Get images
   useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch("https://fed-team.modyo.cloud/api/content/spaces/animals/types/game/entries?per_page=20");
-      const images = await res.json();
-      const list = images.entries.map(item => item.fields.image.url);
+    const doFetch = async () => {
+      const list = await fetchData();
       setImages(list);
     };
 
-    fetchData();
+    doFetch();
   }, []);
 
   return (
