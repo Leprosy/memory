@@ -6,7 +6,7 @@ export const Score = () => {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold underline">This is score</h1>
+      <h1 className="text-3xl font-bold underline">Score</h1>
       <p>Score: {score}</p>
       <p>Errors: {errors}</p>
     </div>

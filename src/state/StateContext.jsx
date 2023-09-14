@@ -4,7 +4,7 @@ import { shuffle } from "../helpers";
 export const StateContext = createContext();
 
 const createItems = () => {
-  const list = shuffle([0, 0, 1, 1, 2, 2]); //, 3, 3, 4, 4, 5, 5]);
+  const list = shuffle([0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5]);
 
   return list.map((item, index) => { return {
     value: item, index, visible: false, clicked: false
@@ -24,7 +24,6 @@ export const StateProvider = ({ children }) => {
 
   return (
     <StateContext.Provider value={{
-      user: "Miguel",
       items,
       setItems,
       score,

@@ -33,8 +33,8 @@ export const Board = () => {
     />;
   });
 
+  // Check tile list for win condition or score/errors updates
   useEffect(() => {
-    // Check tile list for win condition or score/errors updates
     const val = checkClicked(items);
     console.log("effect: clicked", val);
 
