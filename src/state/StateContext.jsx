@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";
-import { shuffle } from "../helpers";
+import { shuffle } from "../helpers/array";
 
 export const StateContext = createContext();
 
