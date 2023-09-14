@@ -27,21 +27,28 @@ export const Header = () => {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold underline">Memory</h1>
-      {user === "" ?
-        <div>
-          <h3>Enter your name</h3>
-          <input id="user" placeholder="name" />
-          <button onClick={() => setUserName()}>Ok</button>
-        </div>
-        :
-        <div>
-          <h3>Hello, {user}</h3>
-          <button onClick={() => cleanUserName()}>Change</button>
-        </div>
-      }
+      <h1 className="text-3xl font-bold text-center">Memory Game</h1>
 
-      <button onClick={() => restart()}>Restart Game</button>
+      <div className="flex flex-row justify-center">
+        <div className="basis-2/4">
+          {user === "" ?
+            <>
+              <input id="user" placeholder="Enter your name" className="inline-block border-b" />
+              <button className="header__button inline-block" onClick={() => setUserName()}>Ok</button>
+            </>
+            :
+            <>
+              <p className="inline-block px-2">Hello, {user}</p>
+              <button className="header__button" onClick={() => cleanUserName()}>Change</button>
+            </>
+          }
+        </div>
+
+        <div className="basis-1/4">
+          <button className="header__button" onClick={() => restart()}>Restart Game</button>
+        </div>
+      </div>
+
     </div>
   );
 };

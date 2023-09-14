@@ -3,8 +3,7 @@ import { Score } from "../components/Score";
 
 export const MainContent = () => {
   return (
-    <div>
-      <h1 className="text-3xl font-bold underline">This is main content</h1>
+    <div className="flex flex-row">
       <Board />
       <Score />
     </div>

@@ -69,7 +69,7 @@ export const Board = () => {
   }, []);
 
   return (
-    <div>
+    <div className="basis-2/3">
       {images.length == 0
         ? (<h1 className="text-3xl font-bold underline">Loading board...</h1>)
         : <>

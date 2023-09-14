@@ -7,11 +7,11 @@ import { StateProvider } from "./state/StateContext";
 function App() {
   return (
     <StateProvider>
-      <header>
+      <div className="flex flex-col">
         <Header />
         <MainContent/>
         <Footer />
-      </header>
+      </div>
     </StateProvider>
   );
 }
