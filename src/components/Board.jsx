@@ -68,18 +68,17 @@ export const Board = () => {
   }, []);
 
   return (
-    <div className="basis-2/3">
+    <div className="basis-2/3 relative">
       {images.length == 0
         ? (<h1 className="text-3xl font-bold underline">Loading board...</h1>)
         : <>
-          <h1 className="text-3xl font-bold underline">
-            {hasWon ? "You win!" : "" }
-          </h1>
           <div className="grid grid-cols-4 gap-4">
             {tiles}
           </div>
         </>
       }
+
+      {hasWon ? <h1 className="border-solid border-2 bg-blue-500 absolute top-10 w-full p-10 text-3xl font-bold text-center">You win!</h1> : "" }
     </div>
   );
 };
