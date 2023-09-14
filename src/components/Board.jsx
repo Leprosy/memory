@@ -1,6 +1,6 @@
 import { StateContext } from "../state/StateContext";
 import { Tile } from "./Tile";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 const getToggledItemList = (items, index) => {
   return items.map(item => {
@@ -16,7 +16,12 @@ const getToggledItemList = (items, index) => {
   });
 };
 
-const unClick = (items) => {
+const getClickedItemsAreEqual = (items) => {
+  const clickedItems = items.filter(item => item.clicked);
+  return clickedItems[0].value === clickedItems[1].value;
+};
+
+const getUnclickedList = (items) => {
   return items.map(item => {
     if (item.clicked) {
       return  {
@@ -28,14 +33,13 @@ const unClick = (items) => {
   });
 };
 
-
 const checkClicked = (items) => {
   const val = items.reduce((acc, item) => item.clicked ? acc + 1 : acc, 0);
   return val;
 };
 
 export const Board = () => {
-  const { items, setItems, score, setScore } = useContext(StateContext);
+  const { items, setItems, score, setScore, errors, setErrors } = useContext(StateContext);
   console.log("Board: items", items);
 
   const tiles = items.map((item) => {
@@ -48,16 +52,26 @@ export const Board = () => {
       onPress={(index) => {
         console.log(`Boardjsx = ${items[index]} Clicked`);
         setItems(getToggledItemList(items, index));
-        const val = checkClicked(items); console.log("checking", val);
-
-        if (val > 1) {
-          setItems(unClick(items));
-        }
-
-        setScore(score + 1);
       }}
     />;
   });
+
+  useEffect(() => {
+    const val = checkClicked(items);
+    console.log("effect: clicked", val);
+
+    if (val > 1) {
+      console.log("End: clicked = ", getClickedItemsAreEqual(items));
+
+      if (getClickedItemsAreEqual(items)) {
+        setScore(score + 1);
+      } else {
+        setErrors(errors + 1);
+      }
+
+      setItems(getUnclickedList(items));
+    }
+  }, [items]);
 
   return (
     <div>
