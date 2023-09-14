@@ -72,7 +72,10 @@ export const Board = () => {
         setItems(getUnclickedList(items, true));
       } else {
         setErrors(errors + 1);
-        setItems(getUnclickedList(items, false));
+        // TODO: dont allow clicking until this ends
+        setTimeout( () => {
+          setItems(getUnclickedList(items, false)); }
+        , 2000);
       }
     }
   }, [items]);
@@ -83,7 +86,7 @@ export const Board = () => {
       const images = await res.json();
       const list = images.entries.map(item => item.fields.image.url);
       setImages(list);
-      console.log("Images fetched", list);
+      console.log("Board: Images fetched", list);
     };
 
     fetchData();
