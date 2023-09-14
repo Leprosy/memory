@@ -3,8 +3,15 @@ import { shuffle } from "../helpers";
 
 export const StateContext = createContext();
 
-const createItems = () => {
-  const list = shuffle([0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5]);
+const createItems = (total) => {
+  let list = [];
+
+  for (let i = 0; i < total; ++i) {
+    list.push(i);
+    list.push(i);
+  }
+
+  list = shuffle(list);
 
   return list.map((item, index) => { return {
     value: item, index, visible: false, clicked: false
@@ -12,14 +19,14 @@ const createItems = () => {
 };
 
 export const StateProvider = ({ children }) => {
-  const [items, setItems] = useState(createItems());
+  const [items, setItems] = useState(createItems(4));
   const [score, setScore] = useState(0);
   const [errors, setErrors] = useState(0);
 
   const restart = () => {
     setErrors(0);
     setScore(0);
-    setItems(createItems());
+    setItems(createItems(4));
   };
 
   return (
