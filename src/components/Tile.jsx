@@ -4,7 +4,7 @@ export const Tile = (props) => {
   const { value, visible, clicked, index, image, onPress } = props;
 
   return (
-    <div className="shadow-lg" onClick={() => {
+    <div onClick={() => {
       onPress(index);
     }}>
       {visible ?
