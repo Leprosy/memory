@@ -2,15 +2,12 @@
  * Shuffles an array
  */
 export const shuffle = (array) => {
-  const result = [], itemsLeft = array.concat([]);
-
-  while (itemsLeft.length) {
-    const randomIndex = Math.floor(Math.random() * itemsLeft.length);
-    const [randomItem] = itemsLeft.splice(randomIndex, 1);
-    result.push(randomItem);
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
   }
 
-  return result;
+  return array;
 };
 
 /*
