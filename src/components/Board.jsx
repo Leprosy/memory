@@ -43,6 +43,7 @@ const checkClicked = (items) => {
 export const Board = () => {
   const { items, setItems, score, setScore, errors, setErrors } = useContext(StateContext);
   const [images, setImages] = useState([]);
+  const [canClick, setCanClick] = useState(true);
   console.log("Board: items", items);
 
   const tiles = items.map((item) => {
@@ -54,8 +55,10 @@ export const Board = () => {
       visible={item.visible}
       clicked={item.clicked}
       onPress={(index) => {
-        console.log(`Boardjsx = ${items[index]} Clicked`);
-        setItems(getToggledItemList(items, index));
+        if (canClick) {
+          console.log(`Boardjsx = ${items[index]} Clicked`);
+          setItems(getToggledItemList(items, index));
+        }
       }}
     />;
   });
@@ -71,11 +74,12 @@ export const Board = () => {
         setScore(score + 1);
         setItems(getUnclickedList(items, true));
       } else {
+        setCanClick(false);
         setErrors(errors + 1);
-        // TODO: dont allow clicking until this ends
         setTimeout( () => {
-          setItems(getUnclickedList(items, false)); }
-        , 2000);
+          setItems(getUnclickedList(items, false));
+          setCanClick(true);
+        }, 2000);
       }
     }
   }, [items]);
