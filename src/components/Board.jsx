@@ -14,7 +14,6 @@ export const Board = () => {
   const [images, setImages] = useState([]);
   const [canClick, setCanClick] = useState(true);
   const [hasWon, setHasWon] = useState(false);
-  console.log("Board: items", items);
 
   const tiles = items.map((item) => {
     return <Tile
@@ -26,7 +25,6 @@ export const Board = () => {
       clicked={item.clicked}
       onPress={(index) => {
         if (canClick) {
-          console.log(`Boardjsx = ${items[index]} Clicked`);
           setItems(getToggledItemList(items, index));
         }
       }}
@@ -36,11 +34,8 @@ export const Board = () => {
   // Check tile list for win condition or score/errors updates
   useEffect(() => {
     const val = checkClicked(items);
-    console.log("effect: clicked", val);
 
     if (val > 1) {
-      console.log("End: clicked = ", getClickedItemsAreEqual(items));
-
       if (getClickedItemsAreEqual(items)) {
         setScore(score + 1);
         setItems(getUnclickedList(items, true));
@@ -68,7 +63,6 @@ export const Board = () => {
       const images = await res.json();
       const list = images.entries.map(item => item.fields.image.url);
       setImages(list);
-      console.log("Board: Images fetched", list);
     };
 
     fetchData();

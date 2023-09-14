@@ -19,8 +19,6 @@ export const shuffle = (array) => {
 export const getToggledItemList = (items, index) => {
   return items.map(item => {
     if (item.index === index && !item.visible && !item.clicked) {
-      console.log("Board: toggling item", index);
-
       return  {
         value: item.value, visible: true, index: item.index, clicked: true
       };

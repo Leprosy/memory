@@ -23,11 +23,7 @@ export const Header = () => {
     if (localUser) {
       setUser(localUser);
     }
-
-    console.log("localuser", localUser);
   }, []);
-
-  console.log("OAW", user, user === "");
 
   return (
     <div>
