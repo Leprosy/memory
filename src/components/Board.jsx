@@ -1,49 +1,19 @@
 import { StateContext } from "../state/StateContext";
 import { Tile } from "./Tile";
 import { useContext, useState, useEffect } from "react";
-
-const getToggledItemList = (items, index) => {
-  return items.map(item => {
-    if (item.index === index && !item.visible && !item.clicked) {
-      console.log("Board: toggling item", index);
-
-      return  {
-        value: item.value, visible: true, index: item.index, clicked: true
-      };
-    } else {
-      return item;
-    }
-  });
-};
-
-const getClickedItemsAreEqual = (items) => {
-  const clickedItems = items.filter(item => item.clicked);
-  return clickedItems[0].value === clickedItems[1].value;
-};
-
-const getUnclickedList = (items, preserveVisibility) => {
-  return items.map(item => {
-    if (item.clicked) {
-      return  {
-        value: item.value, visible: preserveVisibility, index: item.index, clicked: false
-      };
-    } else {
-      return item;
-    }
-  });
-};
-
-const checkClicked = (items) => {
-  const val = items.reduce((acc, item) => item.clicked ? acc + 1 : acc, 0);
-  return val;
-};
-
-
+import {
+  getToggledItemList,
+  checkClicked,
+  getClickedItemsAreEqual,
+  getUnclickedList,
+  checkAllVisible
+} from "../helpers";
 
 export const Board = () => {
   const { items, setItems, score, setScore, errors, setErrors } = useContext(StateContext);
   const [images, setImages] = useState([]);
   const [canClick, setCanClick] = useState(true);
+  const [hasWon, setHasWon] = useState(false);
   console.log("Board: items", items);
 
   const tiles = items.map((item) => {
@@ -64,6 +34,7 @@ export const Board = () => {
   });
 
   useEffect(() => {
+    // Check tile list for win condition or score/errors updates
     const val = checkClicked(items);
     console.log("effect: clicked", val);
 
@@ -79,11 +50,18 @@ export const Board = () => {
         setTimeout( () => {
           setItems(getUnclickedList(items, false));
           setCanClick(true);
-        }, 2000);
+        }, 1000);
       }
+    }
+
+    if (checkAllVisible(items) && score > 0) {
+      setHasWon(true);
+    } else {
+      setHasWon(false);
     }
   }, [items]);
 
+  // Get images
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch("https://fed-team.modyo.cloud/api/content/spaces/animals/types/game/entries?per_page=20");
@@ -101,11 +79,12 @@ export const Board = () => {
       {images.length == 0
         ? (<h1 className="text-3xl font-bold underline">Loading board...</h1>)
         : <>
-          <h1 className="text-3xl font-bold underline">This is board</h1>
+          <h1 className="text-3xl font-bold underline">
+            {hasWon ? "You win!" : "This is board" }
+          </h1>
           {tiles}
         </>
       }
-
     </div>
   );
 };

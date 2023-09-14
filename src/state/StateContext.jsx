@@ -16,7 +16,11 @@ export const StateProvider = ({ children }) => {
   const [score, setScore] = useState(0);
   const [errors, setErrors] = useState(0);
 
-  //const list = createItems();
+  const restart = () => {
+    setErrors(0);
+    setScore(0);
+    setItems(createItems());
+  };
 
   return (
     <StateContext.Provider value={{
@@ -27,6 +31,7 @@ export const StateProvider = ({ children }) => {
       setScore,
       errors,
       setErrors,
+      restart
     }}>
       {children}
     </StateContext.Provider>
