@@ -1,3 +1,6 @@
+[![Code Climate](https://codeclimate.com/github/Leprosy/memory/badges/gpa.svg)](https://codeclimate.com/github/Leprosy/memory)
+[![Issue Count](https://codeclimate.com/github/Leprosy/memory/badges/issue_count.svg)](https://codeclimate.com/github/Leprosy/memory)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
