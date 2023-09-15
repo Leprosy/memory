@@ -3,7 +3,6 @@ import { Score } from "../components/Score";
 import { useContext } from "react";
 import { UserContext } from "../state/UserContext";
 
-
 export const MainContent = () => {
   const { user } = useContext(UserContext);
 
