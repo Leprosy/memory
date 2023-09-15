@@ -4,14 +4,9 @@ export const Tile = (props) => {
   const { value, visible, clicked, index, image, onPress } = props;
 
   return (
-    <div onClick={() => {
+    <div className="w-full h-0 shadow-lg pb-full rounded-xl bg-yellow-300" onClick={() => {
       onPress(index);
-    }}>
-      {visible ?
-        <img src={image} style={{ width: 100, height: 100 }} />
-        :
-        <img src={back} style={{ width: 100, height: 100 }} />
-      }
+    }} style={{ backgroundImage: `url(${visible ? image : back})`, backgroundSize: "100% 100%" }}>
     </div>
   );
 };

@@ -72,7 +72,7 @@ export const Board = () => {
       {images.length == 0
         ? (<h1 className="board__message">Loading board...</h1>)
         : <>
-          <div className={`grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 justify-items-center gap-3${hasWon ? " blur" : ""}`}>
+          <div className={`grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 justify-items-center gap-3${hasWon ? " blur" : ""}`}>
             {tiles}
           </div>
         </>

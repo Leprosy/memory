@@ -27,7 +27,7 @@ export const Header = () => {
 
   return (
     <div className="m-5">
-      <h1 className="text-xl md:text-3xl font-bold text-center m-5">Memory Gamez</h1>
+      <h1 className="text-xl md:text-3xl font-bold text-center m-5">Memory Game</h1>
 
       <div className="flex flex-row items-center">
         <div className="basis-1/2">
