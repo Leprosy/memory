@@ -1,10 +1,20 @@
-import { render, screen } from "@testing-library/react";
-import App from "../App";
+import { checkAllVisible, getUnclickedList, getToggledItemList } from "../helpers/game";
 
-test("renders the screen", () => {
-  render(<App />);
-  expect(screen.getByText(/Memory Game/)).toBeInTheDocument();
-  expect(screen.getByText(/Score/)).toBeInTheDocument();
-  expect(screen.getByText(/Errors/)).toBeInTheDocument();
-  expect(screen.getByText(/Memory Game/)).toBeInTheDocument();
+test("game logic methods", () => {
+  let list1 = [];
+  let list2 = [];
+  let list3 = [];
+
+  for (let i = 0; i < 5; ++i) {
+    list1.push({ index: i, value: i, clicked: true, visible: true });
+    list2.push({ index: i, value: i, clicked: false, visible: false });
+    list3.push({ index: i, value: i, clicked: false, visible: false });
+  }
+
+  list3[1].visible = true; list3[1].clicked = true;
+
+  expect(checkAllVisible(list1)).toBe(true);
+  expect(checkAllVisible(list2)).toBe(false);
+  expect(getUnclickedList(list1).length).toBe(list1.length);
+  expect(getToggledItemList(list2, 1)).toStrictEqual(list3);
 });
