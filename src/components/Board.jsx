@@ -7,7 +7,7 @@ import {
   getClickedItemsAreEqual,
   getUnclickedList,
   checkAllVisible
-} from "../helpers";
+} from "../helpers/game";
 import { fetchData } from "../helpers/data";
 
 export const Board = () => {
