@@ -9,10 +9,10 @@ First, clone this repo and run:
 $ npm install
 ```
 
-This will get all the dependencies needed. Then, in the project 
- directory, you can run:
+This will get all the dependencies needed. Then, you can enter the project directory and start it, running this:
 
 ```
+$ cd memory
 $ npm start
 ```
 
